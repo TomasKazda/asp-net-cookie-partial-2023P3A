@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CookieMaker2023P3A.Pages
@@ -12,12 +13,15 @@ namespace CookieMaker2023P3A.Pages
 
         private readonly ILogger<IndexModel> _logger;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public string Key { get; set; } 
+
+        public IndexModel(ILogger<IndexModel> logger, IConfiguration configuration)
         {
             _logger = logger;
+            Key = configuration["tempdatakey"];
         }
 
-        public void OnGet()
+    public void OnGet()
         {
             LastAccess = Request.Cookies["lastaccess"] ?? DateTime.Now.ToString();
 

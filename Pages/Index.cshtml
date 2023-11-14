@@ -17,10 +17,7 @@
     <p><b>Name</b> není nastaveno</p>
 }
 
-@{
-    string key = "messagetext";
-}
-<partial name="_ShowMessages" model="key" />
+<partial name="_ShowMessages" model="Model.Key" />
 
 <p>Váš poslední přístup byl pravděpodobně <b>@Model.LastAccess</b></p>
 

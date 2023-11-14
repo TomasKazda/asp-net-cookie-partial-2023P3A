@@ -10,14 +10,21 @@ namespace CookieMaker2023P3A.Pages
         [BindProperty(SupportsGet = true)]
         public string Text { get; set; }
 
+        private readonly string _key;
+
+        public TempDataSetterModel(IConfiguration configuration) 
+        {
+            _key = configuration["tempdatakey"];
+        }
+
         public void OnGet()
         {
-            TempData.AddMessage("messagetext", TempDataExtension.MessageType.warning, "Byli jsme na stránce");
+            TempData.AddMessage(_key, TempDataExtension.MessageType.warning, "Byli jsme na stránce");
         }
 
         public void OnGetSetName()
         {
-            TempData.AddMessage("messagetext", TempDataExtension.MessageType.success, Text);
+            TempData.AddMessage(_key, TempDataExtension.MessageType.success, Text);
         }
     }
 }
