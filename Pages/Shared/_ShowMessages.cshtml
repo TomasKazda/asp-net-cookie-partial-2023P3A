@@ -1,0 +1,18 @@
+﻿@model string
+@using CookieMaker2023P3A.services
+
+@{
+    List<TempDataExtension.MessageData> messages = TempData.GetMessages(this.Model);
+}
+
+@if (messages != default)
+{
+    <div class="message-box">
+        @foreach (var message in messages)
+        {
+            <div class="alert alert-@message." role="alert">
+                @message.MessageText
+            </div>
+        }
+    </div>
+}
